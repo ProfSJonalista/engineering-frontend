@@ -14,7 +14,7 @@
   border-radius: 5px;
   bottom: 0;
   color: black;
-  height: 400px;
+  height: fit-content;
   left: 0;
   margin: auto;
   padding: 30px;
@@ -25,10 +25,16 @@
   z-index: 10;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
 .controls {
+  align-items: center;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  gap: 10px;
 }
 
 .close {
