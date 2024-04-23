@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import Modal from "../components/Modal";
 import PaginatedTable from "../components/PaginatedTable";
+import styles from "./BookingsPage.module.css";
 
 interface Booking {
   id: string;
@@ -13,15 +15,21 @@ interface Booking {
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>();
   const [responseOk, setResponseOk] = useState<boolean | undefined>();
+  const [addBookingModalOpen, setAddModalBookingOpen] = useState(false);
 
   useEffect(() => {
     populateBookings();
   }, []);
 
+  const toggleModal = useCallback(
+    () => setAddModalBookingOpen(!addBookingModalOpen),
+    [addBookingModalOpen]
+  );
+
   return (
     <div>
       {responseOk === true && (
-        <button onClick={() => alert("implement add booking")}>
+        <button className={styles.addBooking} onClick={toggleModal}>
           Add booking
         </button>
       )}
@@ -41,6 +49,9 @@ export default function BookingsPage() {
           );
         }}
       />
+      <Modal isOpen={addBookingModalOpen} onClose={toggleModal}>
+        Booking modal
+      </Modal>
     </div>
   );
 

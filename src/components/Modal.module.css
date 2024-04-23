@@ -1,0 +1,39 @@
+.background {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.container {
+  background-color: aliceblue;
+  border-radius: 5px;
+  bottom: 0;
+  color: black;
+  height: 400px;
+  left: 0;
+  margin: auto;
+  padding: 30px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 600px;
+  z-index: 10;
+}
+
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close {
+  border: none;
+  background-color: transparent;
+  font-size: 36px;
+  cursor: pointer;
+}
