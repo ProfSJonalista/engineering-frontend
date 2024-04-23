@@ -4,13 +4,28 @@ import styles from "./PaginatedTable.module.css";
 interface Props {
   columnNames: string[];
   data: any[] | undefined;
+  responseOk: boolean | undefined;
   mapData: (d: any) => React.ReactNode;
 }
 
 const itemsPerPage = 5;
 
-export default function PaginatedTable({ columnNames, data, mapData }: Props) {
+export default function PaginatedTable({
+  columnNames,
+  data,
+  responseOk,
+  mapData,
+}: Props) {
   const [startIndex, setStartIndex] = useState(0);
+
+  if (responseOk === false) {
+    return (
+      <>
+        There was an issue on the server. Please reload the page or try again
+        later.
+      </>
+    );
+  }
 
   return (
     <>

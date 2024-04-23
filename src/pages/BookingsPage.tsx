@@ -1,6 +1,6 @@
-import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
-import PaginatedTable from '../components/PaginatedTable';
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import PaginatedTable from "../components/PaginatedTable";
 
 interface Booking {
   id: string;
@@ -12,6 +12,7 @@ interface Booking {
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState<Booking[]>();
+  const [responseOk, setResponseOk] = useState<boolean | undefined>();
 
   useEffect(() => {
     populateBookings();
@@ -19,19 +20,22 @@ export default function BookingsPage() {
 
   return (
     <div>
-      <button onClick={() => alert('implement add booking')}>
-        Add booking
-      </button>
+      {responseOk === true && (
+        <button onClick={() => alert("implement add booking")}>
+          Add booking
+        </button>
+      )}
       <PaginatedTable
-        columnNames={['ID', 'User ID', 'Parc ID', 'Booking date', 'Comments']}
+        columnNames={["ID", "User ID", "Parc ID", "Booking date", "Comments"]}
         data={bookings}
+        responseOk={responseOk}
         mapData={(b) => {
           return (
             <tr key={b.id}>
               <td>{b.id}</td>
               <td>{b.user}</td>
               <td>{b.parc}</td>
-              <td>{dayjs(b.bookingdate).format('DD MMMM YYYY hh:mm:ss')}</td>
+              <td>{dayjs(b.bookingdate).format("DD MMMM YYYY hh:mm:ss")}</td>
               <td>{b.comments}</td>
             </tr>
           );
@@ -41,9 +45,10 @@ export default function BookingsPage() {
   );
 
   async function populateBookings() {
-    const response = await fetch('http://localhost:3001/api/1/bookings');
+    const response = await fetch("http://localhost:3001/api/1/bookings");
     const data = await response.json();
 
     setBookings(data.data);
+    setResponseOk(response.ok);
   }
 }
