@@ -1,3 +1,11 @@
+.buttons {
+  margin-top: 10px;
+}
+
+.counter {
+  margin: 0 10px;
+}
+
 .scroll {
   max-height: 300px;
   max-width: 1200px;
