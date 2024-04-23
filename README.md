@@ -1,3 +1,11 @@
+Frontend application for Eurocamp company for their engineering test. 
+To run, first download API and data from their [GitHubPage](https://github.com/ECliamb/engineering-test) and follow the instructions how to run it. 
+Then in the command line of this application run following commands:
+```
+npm install
+npm run dev
+```
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
